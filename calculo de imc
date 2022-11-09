@@ -1,0 +1,67 @@
+from tkinter import *
+import sys
+import os
+
+def calcularDados():
+
+     recebePeso = float(vpeso.get())
+     recebeAltura = float(valtura.get())
+
+     alturaEmMetros = recebeAltura / 100
+
+     recebeImc = (recebePeso / alturaEmMetros ** 2)
+
+     if recebeImc < 17:
+         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+     elif recebeImc >= 17 and recebeImc <= 18.49:
+         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+     elif recebeImc >= 18.50 and recebeImc <= 24.99:
+         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+     elif recebeImc >= 25 and recebeImc <= 29.99:
+         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+     elif recebeImc >= 30 and recebeImc <= 34.99:
+         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+     elif recebeImc >= 35 and recebeImc <= 39.99:
+         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+     else:
+         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+
+def reiniciarDados():
+
+    reiniciar = ''
+    recebeResultado["text"] = reiniciar
+
+    vnome.delete(0, END)
+    vendereco.delete(0, END)
+    valtura.delete(0, END)
+    vpeso.delete(0, END)
+
+calculadora=Tk()
+calculadora.title("Cálculo do IMC - Índice de Massa Corporal")
+calculadora.geometry("560x315")
+calculadora.configure(background="#dde")
+
+Label(calculadora,text="Nome do Paciente: ",background="#dde",foreground="#000",anchor=W).place(x=10,y=7,width=200,height=20)
+vnome=Entry(calculadora)
+vnome.place(x=145,y=10,width=300,height=20)
+
+Label(calculadora,text="Endereço Completo: ",background="#dde",foreground="#000",anchor=W).place(x=10,y=42,width=200,height=20)
+vendereco=Entry(calculadora)
+vendereco.place(x=145,y=45,width=300,height=20)
+
+Label(calculadora,text="Altura (cm) ",background="#dde",foreground="#000",anchor=W).place(x=10,y=77,width=100,height=20)
+valtura=Entry(calculadora)
+valtura.place(x=145,y=80,width=100,height=20)
+
+Label(calculadora,text="Peso (Kg) ",background="#dde",foreground="#000",anchor=W).place(x=10,y=112,width=100,height=20)
+vpeso=Entry(calculadora)
+vpeso.place(x=145,y=115,width=100,height=20)
+
+recebeResultado = Label(calculadora, text="", background="#fff", foreground="#000", font="bold")
+recebeResultado.place(x=255, y=80, width=190, height=90)
+
+Button(calculadora,text="Calcular",command=calcularDados).place(x=10,y=183,width=100,height=20)
+Button(calculadora,text="Reiniciar",command=reiniciarDados).place(x=160,y=187,width=100,height=20)
+Button(calculadora,text="Sair",command=calculadora.quit).place(x=355,y=183,width=100,height=20)
+
+calculadora.mainloop()
