@@ -1,67 +1,67 @@
 from tkinter import *
-import sys
-import os
 
 def calcularDados():
 
-     recebePeso = float(vpeso.get())
-     recebeAltura = float(valtura.get())
+     recebePeso = float(recebepeso.get())
+     recebeAltura = float(recebealtura.get())
 
-     alturaEmMetros = recebeAltura / 100
+     metroAltura = recebeAltura / 100
 
-     recebeImc = (recebePeso / alturaEmMetros ** 2)
+     imcrecebe = (recebePeso / metroAltura ** 2)
 
-     if recebeImc < 17:
-         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
-     elif recebeImc >= 17 and recebeImc <= 18.49:
-         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
-     elif recebeImc >= 18.50 and recebeImc <= 24.99:
-         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
-     elif recebeImc >= 25 and recebeImc <= 29.99:
-         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
-     elif recebeImc >= 30 and recebeImc <= 34.99:
-         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
-     elif recebeImc >= 35 and recebeImc <= 39.99:
-         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+     if imcrecebe < 17:
+         resultadorecebe["text"] = f'Muito abaixo do peso\nIMC {imcrecebe:.2f}'
+     elif imcrecebe >= 17 and imcrecebe <= 18.49:
+         resultadorecebe["text"] = f'Abaixo do peso\nIMC {imcrecebe:.2f}'
+     elif imcrecebe >= 18.50 and imcrecebe <= 24.99:
+         resultadorecebe["text"] = f'Peso normal\nIMC {imcrecebe:.2f}'
+     elif imcrecebe >= 25 and imcrecebe <= 29.99:
+         resultadorecebe["text"] = f'Acima do peso\nIMC {imcrecebe:.2f}'
+     elif imcrecebe >= 30 and imcrecebe <= 34.99:
+         resultadorecebe["text"] = f'Obesidade I\nIMC {imcrecebe:.2f}'
+     elif imcrecebe >= 35 and imcrecebe <= 39.99:
+         resultadorecebe["text"] = f'Obesidade II (Severa)\nIMC {imcrecebe:.2f}'
      else:
-         recebeResultado["text"] = f'\nIMC {recebeImc:.2f}'
+         resultadorecebe["text"] = f'Obesidade III (Mórbida)\nIMC {imcrecebe:.2f}'
+
+# Criação da função reiniciarDados que é executada quando o usuário clica no botão Reiniciar #
 
 def reiniciarDados():
 
     reiniciar = ''
-    recebeResultado["text"] = reiniciar
+    resultadorecebe["text"] = reiniciar
 
-    vnome.delete(0, END)
-    vendereco.delete(0, END)
-    valtura.delete(0, END)
-    vpeso.delete(0, END)
+    nomeusuario.delete(0, END)
+    enderecousuario.delete(0, END)
+    recebealtura.delete(0, END)
+    recebepeso.delete(0, END)
 
 calculadora=Tk()
 calculadora.title("Cálculo do IMC - Índice de Massa Corporal")
-calculadora.geometry("560x315")
-calculadora.configure(background="#dde")
+calculadora.geometry("460x215")
+calculadora.configure(background="#000000")
 
-Label(calculadora,text="Nome do Paciente: ",background="#dde",foreground="#000",anchor=W).place(x=10,y=7,width=200,height=20)
-vnome=Entry(calculadora)
-vnome.place(x=145,y=10,width=300,height=20)
+Label(calculadora,text="Nome do Paciente: ",background="#dde",foreground="#010",anchor=W).place(x=10,y=7,width=200,height=20)
+nomeusuario=Entry(calculadora)
+nomeusuario.place(x=145, y=10, width=300, height=20)
 
-Label(calculadora,text="Endereço Completo: ",background="#dde",foreground="#000",anchor=W).place(x=10,y=42,width=200,height=20)
-vendereco=Entry(calculadora)
-vendereco.place(x=145,y=45,width=300,height=20)
+Label(calculadora,text="Endereço Completo: ",background="#dde",foreground="#010",anchor=W).place(x=10,y=42,width=200,height=20)
+enderecousuario=Entry(calculadora)
+enderecousuario.place(x=145, y=45, width=300, height=20)
 
-Label(calculadora,text="Altura (cm) ",background="#dde",foreground="#000",anchor=W).place(x=10,y=77,width=100,height=20)
-valtura=Entry(calculadora)
-valtura.place(x=145,y=80,width=100,height=20)
+Label(calculadora,text="Altura (cm) ",background="#dde",foreground="#010",anchor=W).place(x=10,y=77,width=100,height=20)
+recebealtura=Entry(calculadora)
+recebealtura.place(x=145, y=80, width=100, height=20)
 
-Label(calculadora,text="Peso (Kg) ",background="#dde",foreground="#000",anchor=W).place(x=10,y=112,width=100,height=20)
-vpeso=Entry(calculadora)
-vpeso.place(x=145,y=115,width=100,height=20)
+Label(calculadora,text="Peso (Kg) ",background="#dde",foreground="#010",anchor=W).place(x=10,y=112,width=100,height=20)
+recebepeso=Entry(calculadora)
+recebepeso.place(x=145, y=115, width=100, height=20)
 
-recebeResultado = Label(calculadora, text="", background="#fff", foreground="#000", font="bold")
-recebeResultado.place(x=255, y=80, width=190, height=90)
+resultadorecebe = Label(calculadora, text="", background="#fff", foreground="#000000", font="#000000")
+resultadorecebe.place(x=255, y=80, width=190, height=90)
 
-Button(calculadora,text="Calcular",command=calcularDados).place(x=10,y=183,width=100,height=20)
-Button(calculadora,text="Reiniciar",command=reiniciarDados).place(x=160,y=187,width=100,height=20)
-Button(calculadora,text="Sair",command=calculadora.quit).place(x=355,y=183,width=100,height=20)
+Button(calculadora,text="Calcular",command=calcularDados).place(x=60,y=183,width=100,height=20)
+Button(calculadora,text="Reiniciar",command=reiniciarDados).place(x=160,y=183,width=100,height=20)
+Button(calculadora,text="Sair",command=calculadora.quit).place(x=345,y=183,width=100,height=20)
 
 calculadora.mainloop()
